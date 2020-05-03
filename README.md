@@ -29,7 +29,7 @@ The instruction set is composed on eight different instructions:
  
  where A : accumulator 8b register and Mem : internal 32x8b RAM memory.
  
- ## Datapath:
+ ## Datapath
  
  
  
