@@ -8,7 +8,7 @@ The computer follows the Von Neumann approach, based on an 8b microprocessor wit
 
 The instruction set is composed on eight different instructions:
 
-    Instruction       | Encoding       | Operation        | Comment                                                      |
+    Instruction       | Encoding       | Operation            |  Comment                                                 |
     ----------------------------------------------------------------------------------------------------------------------
     LOAD A, address   |    000aaaaa    |    A <= Mem[aaaaa]   |  Load to A the memory data specified by address.         |
     ----------------------------------------------------------------------------------------------------------------------
@@ -24,8 +24,12 @@ The instruction set is composed on eight different instructions:
     ----------------------------------------------------------------------------------------------------------------------
     JPOS address      |    110aaaaa    | if (A>0) PC <= aaaaa |  Jump to memory location if A content is positive        |
     ----------------------------------------------------------------------------------------------------------------------
-    HALT              |    111-----    |         HALT         | Halts the execution of the program.                      |
+    HALT              |    111-----    |         HALT         |  Halts the execution of the program.                     |
    -----------------------------------------------------------------------------------------------------------------------
  
  where A : accumulator 8b register and Mem : internal 32x8b RAM memory.
+ 
+ ## Datapath:
+ 
+ 
  
