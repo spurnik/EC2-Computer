@@ -1,6 +1,6 @@
 # EC2-Computer
 
-Implementation of "Enoch" Computer version 2, designed by Enoch O. Hwang, in his book 'Digital Logic and Microprocessor Design with VHDL', 2005.
+Implementation of "Enoch" Computer version 2, designed by Enoch O. Hwang, in his book _Digital Logic and Microprocessor Design with VHDL_, 2005.
 
 The computer follows the Von Neumann approach, based on an 8b microprocessor with internal data+instruction RAM memory, including input/output ports.
 
@@ -25,7 +25,7 @@ The instruction set is composed on eight different instructions:
     JPOS address      |    110aaaaa    | if (A>0) PC <= aaaaa |  Jump to memory location if A content is positive        |
     ----------------------------------------------------------------------------------------------------------------------
     HALT              |    111-----    |         HALT         |  Halts the execution of the program.                     |
-   -----------------------------------------------------------------------------------------------------------------------
+    ----------------------------------------------------------------------------------------------------------------------
  
  where A : accumulator 8b register and Mem : internal 32x8b RAM memory.
  
