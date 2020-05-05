@@ -27,25 +27,42 @@ The instruction set is composed on eight different instructions:
  
  ## Datapath
  
-The datapath or process unit is designed based on the instruction set, because it has to perform all the functional and arithmetic operations, which are specified by the instructions. First, let's decide the components. 
+The datapath or process unit is designed based on the instruction set, because it has to perform all the functional and arithmetic operations, which are specified by the instructions. The components will be:
 
-We already know the presence of an **accumulator register**, which will retain the output of the processor, and the **RAM memory**, with 32 8b words and synchronous read/write. Of course we need an **8b instruction register** to get the instruction from memory, and the **program counter** register. To point the 32 locations, the PC has to be of 5b. A **5b incrementer** is needed to increment the PC address. The arithmetic operations are two: addition and substraction. Both can be performed by an **8b adder/substractor** (is not necessary to use an ALU just for them). 
+1. **A** (8b): the accumulator register of the processor. Accumulates the result of arithmetic operation.
+2. **RAM memory** (32x8b) : internal memory with synchronous read and write operations. 
+3. **IR** (8b) : Instruction register, stores the current instruction fetched from memory.
+4. **PC** (5b) : Program counter. Contains the next instruction address.
+5. **Incrementer** (5b) : Used to increment PC's content.
+6. **Adder/Substractor** (8b) : Performs addition and substraction.
+7. **PCMux** (5b) : 2-1 multiplexor which selects the next PC address.
+8. **MemMux** (5b) : 2-1 multiplexor to select the next memory address.
+9. **AMux** (8b) : 4-1 multiplexor to select the next accumulator content.
 
-Then, the instructions will help us on deciding the component's connections. 
+The datapath has to perform the following operations, classified on their purpose:
 
-The STORE (LOAD) instruction is done by connecting the accumulator input(output) with memory output(input). To extract the memory address, we have to plug the 5 less relevant bits of the IR output into memory address port. So we need a 2_1 multiplexor, for deciding which signal goes with memory address: PC's ouput to point the next instruction, or the operand address. To perform the arithmetic instructions, we'll connect the accumulator output into the adder/substractor as the first operand, and the memory ouput connected as the second operand. The result is charged back into accumulator, with priority over processor input (IN instruction) and memory output (LOAD instruction). So we'll use an 8b 4_1 multiplexor with just three inputs, and the output is directly connected to accumulator. 
+1._Instruction cycle_: 
+ + Loads the instruction from memory to IR. Increments PC's content by one and load it back to PC. 
+ + Distinguish between memory **fecthing** address (to fecth the next instruction) and memory **operand** address (to point some memory data).
 
-Finally, the jump instructions reveal the use of a 5b 2_1 multiplexor, as PC's mux. This is to decide whether to charge the next memory address given by incrementer's signal or jumping to a new location, given by IR address (both of 5b). Depending on the accumulator output, the control unit will enable the mux selection signal. 
-    
-We also have to decide which status signals does the CU need, and the opcode.
+2. _Memory cycle_: 
+ + Reads the memory data/instruction specified by memory address and loads it to A/IR.
+ + Writes A's content to the memory location specified by memory address.
+ 
+3. _Execution cycle_:
+ + Adds or substract to A the memory output content, and loads the result back to A.
+ + Loads the external data input to A.
+ + Loads the operand address specified by jump instruction on PC.
+ 
+The datapath also has to provide the next status signals to CU:
 
-We're gonna use two status signals, **Aeq0** and **Apos**. The first one tells to CU if accumulator output is zero, and the second one if it's positive. We can generate Aeq0 with an **8b NOR gate** and Apos as the 7th bit of accumulator output, negated. 
-   
-The **opcode** will be the three most important bits of IR output, which contains the current instruction.
-    
-Now that all components are defined and connected, 
++ **Aeq0 (1b)**: Tells to CU whether A content is zero. Implemented on A output with an 8b NOR gate.
++ **Apos (1b)**: Tells to CU whether A content is positive. Implemented by negating the most significant bit of A output.
++ **Opcode (3b)** : The three most significant bits of IR output, tells to CU which instruction to execute.
+ 
+From the components and functionallity, we will need up to 15 control signals from CU, which are:
 
-1. 
+
     
     
  
