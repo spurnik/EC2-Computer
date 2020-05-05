@@ -71,7 +71,9 @@ From the components and functionallity, we will need up to 8 **control signals**
 7. **Aload** (1b) : A load enable signal.
 8. **Sub** (1b) : Substraction enable signal.
 
-![Datapath design](images/DATAPATH.png)
+Datapath design:
+
+![](images/DATAPATH.png)
 
  ## Control Unit
  
