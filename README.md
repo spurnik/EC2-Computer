@@ -20,8 +20,8 @@ The instruction set is composed on eight different instructions:
 |       HALT       |    111-----    |         HALT         |  Halts the execution of the program.                     |
 
  where 
-  A : 8b accumulator register.
-  Mem : internal 32x8b RAM memory.
+ + A : 8b accumulator register.
+ + Mem : internal 32x8b RAM memory.
  
  ## Datapath
  
