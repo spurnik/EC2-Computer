@@ -19,13 +19,9 @@ The instruction set is composed on eight different instructions:
 |  JPOS address    |    110aaaaa    | if (A>0) PC <= aaaaa |  Jump to memory location if A content is positive        |
 |       HALT       |    111-----    |         HALT         |  Halts the execution of the program.                     |
 
-
-|   |   |   |   |   |
-|---|---|---|---|---|
-|   |   |   |   |   |
-|   |   |   |   |   |
-|   |   |   |   |   |
- where A : accumulator 8b register and Mem : internal 32x8b RAM memory.
+ where 
+  A : 8b accumulator register.
+  Mem : internal 32x8b RAM memory.
  
  ## Datapath
  
