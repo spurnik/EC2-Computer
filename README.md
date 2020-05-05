@@ -27,45 +27,50 @@ The instruction set is composed on eight different instructions:
  
  ## Datapath
  
-The datapath or process unit is designed based on the instruction set, because it has to perform all the functional and arithmetic operations, which are specified by the instructions. The components will be:
+The datapath or process unit is designed based on the instruction set, because it has to perform all the functional and arithmetic operations, which are specified by the instructions. The **components** will be:
 
-1. **A** (8b): the accumulator register of the processor. Accumulates the result of arithmetic operation.
+1. **A** (8b) : Accumulator register. Stores the result of arithmetic operation.
 2. **RAM memory** (32x8b) : internal memory with synchronous read and write operations. 
-3. **IR** (8b) : Instruction register, stores the current instruction fetched from memory.
-4. **PC** (5b) : Program counter. Contains the next instruction address.
+3. **IR** (8b) : Instruction Register, stores the current instruction fetched from memory.
+4. **PC** (5b) : Program Counter. Contains the next instruction address.
 5. **Incrementer** (5b) : Used to increment PC's content.
-6. **Adder/Substractor** (8b) : Performs addition and substraction.
-7. **PCMux** (5b) : 2-1 multiplexor which selects the next PC address.
-8. **MemMux** (5b) : 2-1 multiplexor to select the next memory address.
-9. **AMux** (8b) : 4-1 multiplexor to select the next accumulator content.
+6. **Adder/Substractor** (8b) : performs addition and substraction.
+7. **PCmux** (5b) : 2-1 multiplexor which selects the next PC address.
+8. **MEMmux** (5b) : 2-1 multiplexor to select the next memory address.
+9. **Amux** (8b) : 4-1 multiplexor to select the next accumulator content.
 
-The datapath has to perform the following operations, classified on their purpose:
+The datapath has to perform the following **operations**, classified on their purpose:
 
-1._Instruction cycle_: 
+1. _Instruction cycle_: 
  + Loads the instruction from memory to IR. Increments PC's content by one and load it back to PC. 
- + Distinguish between memory **fecthing** address (to fecth the next instruction) and memory **operand** address (to point some memory data).
+ + Distinguish between memory fecthing address (to fecth the next instruction) and memory operand address (to point some memory data).
 
 2. _Memory cycle_: 
  + Reads the memory data/instruction specified by memory address and loads it to A/IR.
  + Writes A's content to the memory location specified by memory address.
  
 3. _Execution cycle_:
- + Adds or substract to A the memory output content, and loads the result back to A.
+ + Adds or substracts to A's content the memory output data, and loads the result back to A.
  + Loads the external data input to A.
  + Loads the operand address specified by jump instruction on PC.
  
-The datapath also has to provide the next status signals to CU:
+The datapath also has to provide the next **status signals** to CU:
 
-+ **Aeq0 (1b)**: Tells to CU whether A content is zero. Implemented on A output with an 8b NOR gate.
-+ **Apos (1b)**: Tells to CU whether A content is positive. Implemented by negating the most significant bit of A output.
++ **Aeq0 (1b)** : Tells to CU whether A content is zero. Implemented on A output with an 8b NOR gate.
++ **Apos (1b)** : Tells to CU whether A content is positive. Implemented by negating the most significant bit of A output.
 + **Opcode (3b)** : The three most significant bits of IR output, tells to CU which instruction to execute.
  
-From the components and functionallity, we will need up to 15 control signals from CU, which are:
+From the components and functionallity, we will need up to 8 **control signals** from CU, which are:
 
+1. **IRload** (1b) : IR load enable signal.
+2. **JMPmux** (1b) : PCMux selection signal.
+3. **PCload** (1b) : PC load enable signal.
+4. **MEMinst** (1b) : MemMux selection signal.
+5. **MEMwr** (1b) : memory write enable signal.
+6. **Asel** (2b) : Amux selection signals.
+7. **Aload** (1b) : A load enable signal.
+8. **Sub** (1b) : Substraction enable signal.
 
-    
-    
- 
  ## Control Unit
  
  
