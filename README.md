@@ -56,9 +56,9 @@ The datapath has to perform the following **operations**, classified on their pu
  
 The datapath also has to provide the next **status signals** to CU:
 
-+ **Aeq0 (1b)** : Tells to CU whether A content is zero. Implemented on A output with an 8b NOR gate.
-+ **Apos (1b)** : Tells to CU whether A content is positive. Implemented by negating the most significant bit of A output.
-+ **Opcode (3b)** : The three most significant bits of IR output, tells to CU which instruction to execute.
++ **Aeq0** (1b) : Tells to CU whether A content is zero. Implemented on A output with an 8b NOR gate.
++ **Apos** (1b) : Tells to CU whether A content is positive. Implemented by negating the most significant bit of A output.
++ **Opcode** (3b) : The three most significant bits of IR output, tells to CU which instruction to execute.
  
 From the components and functionallity, we will need up to 8 **control signals** from CU, which are:
 
