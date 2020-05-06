@@ -77,11 +77,17 @@ So here's the Datapath design, which best describes the conections between it's 
 
  ## Control Unit
  
+ State diagram:
+ 
+ ![](images/StateDiagram.png)
+ 
  
  
  ## Implementation
  
+ Complete circuit:
  
+ ![](CompleteCircuit.png)
  
  ## Execution and testbench
  
