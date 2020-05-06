@@ -139,20 +139,20 @@ The **complete circuit** design of the processor is like this one:
 
 The VHDL attached files contain the entity we're emulating and it architecture. These are:
 
-1. [reg.vhdl](/reg.vhdl) : Generic bit width register. Behavioral architecture.
-2. [mux2_1.vhdl](/mux2_1.vhdl) : Generic bit width 2_1 multiplexor. Behavioral architecture.
-3. [mux4_1.vhdl] : Generic bit width 4_1 multiplexor. Behavioral architecture.
-4. add_sub.vhdl : Generic bit width adder/substractor. Behavioral architecture.
-5. incrementer.vhd : Generic bit width incrementer. Behavioral architecture.
-6. memory.vhdl : 32x8b memory with synchronous read/write operations. Behavioral architecture.
-7. datapath.vhdl : Implementation of Datapath design. Composed of all the components previosly specified. RTL architecture.
-8. controller.vhdl : Implementation of Controller design. Based on two main processes, next_state_logic, and output_logic. Behavioral architecture
-9. microprocessor.vhdl : Implementation of the complete circuit design. Has two main components, the CU and the Datapath. RTL architecture.
+1. [reg.vhdl](reg.vhdl) : Generic bit width register. Behavioral architecture.
+2. [mux2_1.vhdl](mux2_1.vhdl) : Generic bit width 2_1 multiplexor. Behavioral architecture.
+3. [mux4_1.vhdl](mux4_1.vhdl) : Generic bit width 4_1 multiplexor. Behavioral architecture.
+4. [add_sub.vhdl](add_sub.vhdl) : Generic bit width adder/substractor. Behavioral architecture.
+5. [incrementer.vhdl](incrementer.vhdl) : Generic bit width incrementer. Behavioral architecture.
+6. [memory.vhdl](memory.vhdl) : 32x8b memory with synchronous read/write operations. Behavioral architecture.
+7. [datapath.vhdl](datapath.vhdl) : Implementation of Datapath design. Composed of all the components previosly specified. RTL architecture.
+8. [controller.vhdl](controller.vhdl) : Implementation of Controller design. Based on two main processes, next_state_logic, and output_logic. Behavioral architecture
+9. [microprocessor.vhdl](microprocessor.vhdl) : Implementation of the complete circuit design. Has two main components, the CU and the Datapath. RTL architecture.
 
 and two VHDL files for testing, which are:
 
-10. microprocessor_tb.vhdl : Contains the testbench entity and body test.
-11. microprocessor_tb_conf.vhdl : Contains the testbench configuration.
+10. [microprocessor_tb.vhdl](microprocessor_tb.vhdl) : Contains the testbench entity and body test.
+11. [microprocessor_tb_conf.vhdl](microprocessor_tb_conf.vhdl) : Contains the testbench configuration.
  
  ## Execution and testbench
  
@@ -164,7 +164,7 @@ The output signals include the **halt** signal, asserted once the HALT state is 
 
 The VHDL files can be compiled in the order given above. To run the test, I used to type: ```ghdl -r --workdir=work test_conf --vcd=waves.vcd``` and then halt it with **cntr+C**. This will generate a vcd file that can be visuallized with some waveform application.
 
-Finally, I've included some programs in the programs.vhdl file. By default, the memory is initiallized with INPUT_PRODUCT program, which performs the product of test input signal values. 
+Finally, I've included some programs in the [programs.vhdl](programs.vhdl) file. By default, the memory is initiallized with INPUT_PRODUCT program, which performs the product of test input signal values. 
 
 
 
