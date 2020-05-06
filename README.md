@@ -139,23 +139,32 @@ The **complete circuit** design of the processor is like this one:
 
 The VHDL attached files contain the entity we're emulating and it architecture. These are:
 
-+ **reg.vhdl** : Generic bit width register. Behavioral architecture.
-+ **mux2_1.vhdl** : Generic bit width 2_1 multiplexor. Behavioral architecture.
-+ **mux4_1.vhdl** : Generic bit width 4_1 multiplexor. Behavioral architecture.
-+ **add_sub.vhdl** : Generic bit width adder/substractor. Behavioral architecture.
-+ **incrementer.vhd** : Generic bit width incrementer. Behavioral architecture.
-+ **memory.vhdl** : 32x8b memory with synchronous read/write operations. Behavioral architecture.
-+ **datapath.vhdl** : Implementation of Datapath design. Composed of all the components previosly specified. RTL architecture.
-+ **controller.vhdl** : Implementation of Controller design. Based on two main processes, next_state_logic, and output_logic. Behavioral architecture
-+ **microprocessor.vhdl** : Implementation of the complete circuit design. Has two main components, the CU and the Datapath. RTL architecture.
+1. **reg.vhdl** : Generic bit width register. Behavioral architecture.
+2. **mux2_1.vhdl** : Generic bit width 2_1 multiplexor. Behavioral architecture.
+3. **mux4_1.vhdl** : Generic bit width 4_1 multiplexor. Behavioral architecture.
+4. **add_sub.vhdl** : Generic bit width adder/substractor. Behavioral architecture.
+5. **incrementer.vhd** : Generic bit width incrementer. Behavioral architecture.
+6. **memory.vhdl** : 32x8b memory with synchronous read/write operations. Behavioral architecture.
+7. **datapath.vhdl** : Implementation of Datapath design. Composed of all the components previosly specified. RTL architecture.
+8. **controller.vhdl** : Implementation of Controller design. Based on two main processes, next_state_logic, and output_logic. Behavioral architecture
+9. **microprocessor.vhdl** : Implementation of the complete circuit design. Has two main components, the CU and the Datapath. RTL architecture.
 
 and two VHDL files for testing, which are:
 
-+ **microprocessor_tb.vhdl** : Contains the testbench entity and body test.
-+ **microprocessor_tb_conf.vhdl** : Contains the testbench configuration.
+10. **microprocessor_tb.vhdl** : Contains the testbench entity and body test.
+11. **microprocessor_tb_conf.vhdl** : Contains the testbench configuration.
  
  ## Execution and testbench
  
-For the processor to run a **program**, it has to be charged directly on memory initiallization, in the memory.vhdl file. Then, running the testbench will generate the input/output signals of the processor, called _CPU_. 
+For the processor to run a program, it has to be charged directly on memory initiallization, in the memory.vhdl file. Then, running the testbench will generate the input/output signals of the processor, called _CPU_. 
 
-These input signals include an **8b data input** signal, **clock** signal, **reset** signal, and **Enter** signal. The reset (active high) signal clears all Datapath's resgisters, and changes the CU state to START state, asynchronously. When the signal goes down, the program...
+These input signals include an **8b data input** signal, **clock** signal, **reset** signal, and **Enter** signal. The reset (active high) signal clears all Datapath's resgisters, and changes the CU state to START state, asynchronously. When the signal goes down, the processor will start the execution beggining with the 00h memory instruction, and passing throught different states until HALT is reached. The Enter signal it's just used for entering data input, whenever we reach the IN state. If not asserted, the execution will stop at this state, waiting for input to be read.
+
+The output signals include the **halt** signal, asserted once the HALT state is reached, and an **8b data output**. This last signal will be always available, as no tri-state buffer is used.
+
+The VHDL files can be compiled in the order given above. To run the test, I used to type: ´´ ghdl -r --workdir=work test_conf --vcd=waves.vcd´´ and then halt it with **cntr+C**. This will generate a vcd file that can be visuallized with some waveform application.
+
+Finally, I've included some programs in ![](/programs) folder. 
+
+
+
