@@ -87,7 +87,7 @@ So here's the Datapath design, which best describes the conections between it's 
  
  Complete circuit:
  
- ![](CompleteCircuit.png)
+ ![](images/CompleteCircuit.png)
  
  ## Execution and testbench
  
