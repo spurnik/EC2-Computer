@@ -77,25 +77,35 @@ So here's the Datapath design, which best describes the conections between it's 
 
  ## Control Unit
  
- State diagram:
+We have already all the necessary control signals to control datapath's operations. The control unit is just a **FSM (Finite State Machine)**, whose output are the control signals values, grouped as a 'control word'. Each possible control word is performed at one clock cycle. 
+
+So first we have to define the **FSM states** to perform all the operations of the datapath:
+
+1. **START** (0000) : The 'no operation' state. Acts as a stall, in order to load all the previous result values. Also reads from memory the next instruction pointed by PC.
+
+2. **FETCH** (0001) : Fetches the available next instruction, by loading directly to IR, and increases PC by one.
+
+3. **DECODE** (0010) : Transition state depending on opcode. Reads the memory content given by instruction operand address.
+
+ 3.1. **LOAD** (1000) : Loads the memory available content from DECODE state to A.
+
+ 3.2. **STORE** (1001) : Stores A content on the memory location given by instruction operand address.
+
+ 3.3. **ADD** (1010) : Sums A content with memory available content from DECODE state, and loads the result back into A.
+
+ 3.4. **SUB** (1011) : Substract A content with memory available content from DECODE state, and loads the result back into A.
+
+ 3.5. **IN** (1100) : Loads 8b external data input into A.
+
+ 3.6. **JZ** (1101) : If A content is zero (Aeq0 = 1), loads the instruction operand address into PC. If not, does nothing.
+
+ 3.7. **JPOS** (1110) : If A content is positive (Apos = 1), loads the instruction operand address into PC. If not, does nothing.
+
+ 3.8. **HALT** (1111) : Halts the execution, by only asserting the halt signal.
+
+ Now that all the states are defined, we can derive the **state diagram** as follows:
  
  ![](images/StateDiagram.png)
- 
- Next state table:
-
-| CURRENT STATE|000(LOAD)|001(STORE)|010(ADD) |011(SUB) |100(IN)  |101(JZ)  |110(JPOS)|111(HALT)|
-|--------------|---------|----------|---------|---------|---------|---------|---------|---------|
-| 0000 (start) | 0001    | 0001     | 0001    | 0001    | 0001    | 0001    | 0001    | 0001    |
-| 0001 (fetch) | 0010    | 0010     | 0010    | 0010    | 0010    | 0010    | 0010    | 0010    |
-| 0010 (decode)| 1000    | 1001     | 1010    | 1011    | 1100    | 1101    | 1110    | 1111    |
-| 1000 (load)  | 0000    | 0000     | 0000    | 0000    | 0000    | 0000    | 0000    | 0000    |
-| 1001 (store) | 0000    | 0000     | 0000    | 0000    | 0000    | 0000    | 0000    | 0000    |
-| 1010 (add)   | 0000    | 0000     | 0000    | 0000    | 0000    | 0000    | 0000    | 0000    |
-| 1011 (sub)   | 0000    | 0000     | 0000    | 0000    | 0000    | 0000    | 0000    | 0000    |
-| 1100 (in)    |1100/0000|1100/0000 |1100/0000|1100/0000|1100/0000|1100/0000|1100/0000|1100/0000|
-| 1101 (jz)    | 0000    | 0000     | 0000    | 0000    | 0000    | 0000    | 0000    | 0000    |
-| 1110 (jpos)  | 0000    | 0000     | 0000    | 0000    | 0000    | 0000    | 0000    | 0000    |
-| 1111 (halt)  | 1111    | 1111     | 1111    | 1111    | 1111    | 1111    | 1111    | 1111    |
 
 Output table
 
