@@ -141,7 +141,7 @@ The VHDL attached files contain the entity we're emulating and it architecture. 
 
 1. [reg.vhdl](/reg.vhdl) : Generic bit width register. Behavioral architecture.
 2. [mux2_1.vhdl](/mux2_1.vhdl) : Generic bit width 2_1 multiplexor. Behavioral architecture.
-3. mux4_1.vhdl : Generic bit width 4_1 multiplexor. Behavioral architecture.
+3. [mux4_1.vhdl] : Generic bit width 4_1 multiplexor. Behavioral architecture.
 4. add_sub.vhdl : Generic bit width adder/substractor. Behavioral architecture.
 5. incrementer.vhd : Generic bit width incrementer. Behavioral architecture.
 6. memory.vhdl : 32x8b memory with synchronous read/write operations. Behavioral architecture.
