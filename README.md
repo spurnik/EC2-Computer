@@ -137,7 +137,7 @@ The **complete circuit** design of the processor is like this one:
 
  ![](images/CompleteCircuit.png)
 
-The VHDL attached files contain the entity we're emulating and it architecture. These are:
+The VHDL attached files contain the entity we're emulating and its architecture. These are:
 
 1. [reg.vhdl](reg.vhdl) : Generic bit width register. Behavioral architecture.
 2. [mux2_1.vhdl](mux2_1.vhdl) : Generic bit width 2_1 multiplexor. Behavioral architecture.
@@ -156,7 +156,7 @@ and two VHDL files for testing, which are:
  
  ## Execution and testbench
  
-For the processor to run a program, it has to be charged directly on memory initiallization, in the [memory.vhdl](memory.vhdl) file. Then, running the testbench will generate the input/output signals of the processor, called _CPU_. 
+For the processor to run a program, has to be charged directly on memory initiallization, in the [memory.vhdl](memory.vhdl) file. Then, running the testbench will generate the input/output signals of the processor, called _CPU_. 
 
 These input signals include an **8b data input** signal, **clock** signal, **reset** signal, and **Enter** signal. The reset (active high) signal clears all Datapath's resgisters, and changes the CU state to START state, asynchronously. When the signal goes down, the processor will start the execution beggining with the 00h memory instruction, and passing throught different states until HALT is reached. The Enter signal it's just used for entering data input, whenever we reach the IN state. If not asserted, the execution will stop at this state, waiting for input to be read.
 
