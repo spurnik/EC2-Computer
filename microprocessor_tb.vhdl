@@ -27,7 +27,7 @@ architecture test of microprocessor_tb is
 
 begin
 
-  CPU : microprocessor port map(Enter => s_Enter, clock => s_clock, reset => s_reset,
+  EC2 : microprocessor port map(Enter => s_Enter, clock => s_clock, reset => s_reset,
                                   input => s_input, output => s_output, halt => s_halt);
 
   clock_generator : process
