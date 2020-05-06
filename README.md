@@ -139,20 +139,20 @@ The **complete circuit** design of the processor is like this one:
 
 The VHDL attached files contain the entity we're emulating and it architecture. These are:
 
-+ reg.vhdl : Generic bit width register. Behavioral architecture.
-+ mux2_1.vhdl : Generic bit width 2_1 multiplexor. Behavioral architecture.
-+ mux4_1.vhdl : Generic bit width 4_1 multiplexor. Behavioral architecture.
-+ add_sub.vhdl : Generic bit width adder/substractor. Behavioral architecture.
-+ incrementer.vhd : Generic bit width incrementer. Behavioral architecture.
-+ memory.vhdl : 32x8b memory with synchronous read/write operations. Behavioral architecture.
-+ datapath.vhdl : Implementation of Datapath design. Composed of all the components previosly specified. RTL architecture.
-+ controller.vhdl : Implementation of Controller design. Based on two main processes, next_state_logic, and output_logic. Behavioral architecture
-+ microprocessor.vhdl : Implementation of the complete circuit design. Has two main components, the CU and the Datapath. RTL architecture.
++ **reg.vhdl** : Generic bit width register. Behavioral architecture.
++ **mux2_1.vhdl** : Generic bit width 2_1 multiplexor. Behavioral architecture.
++ **mux4_1.vhdl** : Generic bit width 4_1 multiplexor. Behavioral architecture.
++ **add_sub.vhdl** : Generic bit width adder/substractor. Behavioral architecture.
++ **incrementer.vhd** : Generic bit width incrementer. Behavioral architecture.
++ **memory.vhdl** : 32x8b memory with synchronous read/write operations. Behavioral architecture.
++ **datapath.vhdl** : Implementation of Datapath design. Composed of all the components previosly specified. RTL architecture.
++ **controller.vhdl** : Implementation of Controller design. Based on two main processes, next_state_logic, and output_logic. Behavioral architecture
++ **microprocessor.vhdl** : Implementation of the complete circuit design. Has two main components, the CU and the Datapath. RTL architecture.
 
 and two VHDL files for testing, which are:
 
-+ microprocessor_tb.vhdl : Contains the testbench entity and body test.
-+ microprocessor_tb_conf.vhdl : Contains the testbench configuration.
++ **microprocessor_tb.vhdl** : Contains the testbench entity and body test.
++ **microprocessor_tb_conf.vhdl** : Contains the testbench configuration.
  
  ## Execution and testbench
  
