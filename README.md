@@ -87,25 +87,29 @@ So first we have to define the **FSM states** to perform all the operations of t
 
 3. **DECODE** (0010) : Transition state depending on opcode. Reads the memory content given by instruction operand address.
 
- 3.1. **LOAD** (1000) : Loads the memory available content from DECODE state to A.
+4. **LOAD** (1000) : Loads the memory available content from DECODE state to A.
 
- 3.2. **STORE** (1001) : Stores A content on the memory location given by instruction operand address.
+5. **STORE** (1001) : Stores A content on the memory location given by instruction operand address.
 
- 3.3. **ADD** (1010) : Sums A content with memory available content from DECODE state, and loads the result back into A.
+6. **ADD** (1010) : Sums A content with memory available content from DECODE state, and loads the result back into A.
 
- 3.4. **SUB** (1011) : Substract A content with memory available content from DECODE state, and loads the result back into A.
+7. **SUB** (1011) : Substract A content with memory available content from DECODE state, and loads the result back into A.
 
- 3.5. **IN** (1100) : Loads 8b external data input into A.
+8. **IN** (1100) : Loads 8b external data input into A.
 
- 3.6. **JZ** (1101) : If A content is zero (Aeq0 = 1), loads the instruction operand address into PC. If not, does nothing.
+9. **JZ** (1101) : If A content is zero (Aeq0 = 1), loads the instruction operand address into PC. If not, does nothing.
 
- 3.7. **JPOS** (1110) : If A content is positive (Apos = 1), loads the instruction operand address into PC. If not, does nothing.
+10. **JPOS** (1110) : If A content is positive (Apos = 1), loads the instruction operand address into PC. If not, does nothing.
 
- 3.8. **HALT** (1111) : Halts the execution, by only asserting the halt signal.
+11. **HALT** (1111) : Halts the execution, by only asserting the halt signal.
 
- Now that all the states are defined, we can derive the **state diagram** as follows:
+Now that all the states are defined, we can derive the **state diagram** as follows:
  
  ![](images/StateDiagram.png)
+ 
+where:
++ opc : operand code from Datapath's current instruction. Acts as input of the FSM.
++ Enter : external signal of CU. When asserted, the data input enters to datapath, so the transition IN => START can be done.
 
 Output table
 
