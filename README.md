@@ -164,7 +164,7 @@ The output signals include the **halt** signal, asserted once the HALT state is 
 
 The VHDL files can be compiled in the order given above. To run the test, I used to type: ´´ ghdl -r --workdir=work test_conf --vcd=waves.vcd´´ and then halt it with **cntr+C**. This will generate a vcd file that can be visuallized with some waveform application.
 
-Finally, I've included some programs in ![](/programs) folder. 
+Finally, I've included some programs in [](/programs) folder. 
 
 
 
