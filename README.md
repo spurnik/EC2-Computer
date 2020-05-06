@@ -30,11 +30,11 @@ The instruction set is composed on eight different instructions:
 The datapath or process unit is designed based on the instruction set, because it has to perform all the functional and arithmetic operations, which are specified by the instructions. The **components** will be:
 
 1. **A** (8b) : Accumulator register. Stores the result of arithmetic operation.
-2. **RAM memory** (32x8b) : internal memory with synchronous read and write operations. 
+2. **RAM memory** (32x8b) : Internal memory with synchronous read and write operations. 
 3. **IR** (8b) : Instruction Register, stores the current instruction fetched from memory.
 4. **PC** (5b) : Program Counter. Contains the next instruction address.
 5. **Incrementer** (5b) : Used to increment PC's content.
-6. **Adder/Substractor** (8b) : performs addition and substraction.
+6. **Adder/Substractor** (8b) : Performs addition and substraction.
 7. **PCmux** (5b) : 2-1 multiplexor which selects the next PC address.
 8. **MEMmux** (5b) : 2-1 multiplexor to select the next memory address.
 9. **Amux** (8b) : 4-1 multiplexor to select the next accumulator content.
@@ -66,10 +66,10 @@ From the components and functionallity, we will need up to 8 **control signals**
 2. **JMPmux** (1b) : PCMux selection signal.
 3. **PCload** (1b) : PC load enable signal.
 4. **MEMinst** (1b) : MemMux selection signal.
-5. **MEMwr** (1b) : memory write enable signal.
+5. **MEMwr** (1b) : Memory write enable signal.
 6. **Asel** (2b) : Amux selection signals.
 7. **Aload** (1b) : A load enable signal.
-8. **Sub** (1b) : Substraction enable signal.
+8. **Sub** (1b) : substraction enable signal.
 
 So here's the Datapath design, which best describes the conections between it's components:
 
@@ -137,19 +137,19 @@ The **complete circuit** design of the processor is like this one:
 
  ![](images/CompleteCircuit.png)
 
-The VHDL files contain the entity we're emulating and it architecture. The files attached are the following:
+The VHDL attached files contain the entity we're emulating and it architecture. These are:
 
-+reg.vhdl : generic bit width register. Behavioral architecture.
-+mux2_1.vhdl : generic bit width 2_1 multiplexor. Behavioral architecture.
-+mux4_1.vhdl : generic bit width 4_1 multiplexor. Behavioral architecture.
-+add_sub.vhdl : generic bit width adder/substractor. Behavioral architecture.
-+incrementer.vhd : generic bit width incrementer. Behavioral architecture.
-+memory.vhdl : 32x8b memory with synchronous read/write operations. Behavioral architecture.
-+datapath.vhdl : Implementation of Datapath design. Composed of all the components previosly specified. RTL architecture.
-+controller.vhdl : Implementation of Controller design. Based on two main processes, next_state_logic, and output_logic. Behavioral architecture
++ reg.vhdl : Generic bit width register. Behavioral architecture.
++ mux2_1.vhdl : Generic bit width 2_1 multiplexor. Behavioral architecture.
++ mux4_1.vhdl : Generic bit width 4_1 multiplexor. Behavioral architecture.
++ add_sub.vhdl : Generic bit width adder/substractor. Behavioral architecture.
++ incrementer.vhd : Generic bit width incrementer. Behavioral architecture.
++ memory.vhdl : 32x8b memory with synchronous read/write operations. Behavioral architecture.
++ datapath.vhdl : Implementation of Datapath design. Composed of all the components previosly specified. RTL architecture.
++ controller.vhdl : Implementation of Controller design. Based on two main processes, next_state_logic, and output_logic. Behavioral architecture
 + microprocessor.vhdl : Implementation of the complete circuit design. Has two main components, the CU and the Datapath. RTL architecture.
 
-and for testing, we have two VHDL files, which are:
+and two VHDL files for testing, which are:
 
 + microprocessor_tb.vhdl : Contains the testbench entity and body test.
 + microprocessor_tb_conf.vhdl : Contains the testbench configuration.
