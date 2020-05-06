@@ -79,7 +79,7 @@ So here's the Datapath design, which best describes the conections between it's 
  
 We have already all the necessary control signals to control datapath's operations. The control unit is just a **FSM (Finite State Machine)**, whose output are the control signals values, grouped as a 'control word'. Each possible control word is performed at one clock cycle. 
 
-So first we have to define the **FSM states** to perform all the operations of the datapath:
+First, we have to define the **FSM states** to perform all the operations of the datapath:
 
 1. **START** (0000) : The 'no operation' state. Acts as a stall, in order to load all the previous result values. Also reads from memory the next instruction pointed by PC.
 
@@ -103,15 +103,15 @@ So first we have to define the **FSM states** to perform all the operations of t
 
 11. **HALT** (1111) : Halts the execution, by only asserting the halt signal.
 
-Now that all the states are defined, we can derive the **state diagram** as follows:
+Now that all the states are defined, we can derive the state diagram, following the Moore model:
  
  ![](images/StateDiagram.png)
- 
+
 where:
 + opc : operand code from Datapath's current instruction. Acts as input of the FSM.
-+ Enter : external signal of CU. When asserted, the data input enters to datapath, so the transition IN => START can be done.
++ ENTER : external signal of CU. When asserted, the data input enters to datapath, so the transition IN => START can be done.
 
-Output table
+The control output is not defined in the state bubbles because of the space. Instead, all state's control words are described in the **output table**:
 
 | CURRENT STATE | IRLOAD |  JMPMUX | PCLOAD | MEMINSTR | MEMWR | ASEL | ALOAD | SUB | HALT |
 |---------------|--------|---------|--------|----------|-------|------|-------|-----|------|
@@ -126,6 +126,8 @@ Output table
 | 1101 (jz)     |   0    |    1    |  Aeq0  |    0     |   0   |  00  |   0   |  0  |  0   |
 | 1110 (jpos)   |   0    |    1    |  Apos0 |    0     |   0   |  00  |   0   |  0  |  0   |
 | 1111 (halt)   |   0    |    0    |    0   |    0     |   0   |  00  |   0   |  0  |  1   |
+
+For example, when reaching START state, the control unit will be outputting zeros for each control signal until next clock's active edge, when the transition START => FETCH state is done.
 
  ## Implementation
  
