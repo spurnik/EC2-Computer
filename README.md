@@ -131,9 +131,28 @@ For example, when reaching START state, the control unit will be outputting zero
 
  ## Implementation
  
- Complete circuit:
- 
+Because of the VHDL **behavioral** style, it's not necessary to build the structural design of CU, unlike Datapath's design. Then, the processor VHDL code follows a FSM+D model. That means we build the Datapath and the CU on separated entites, and then we plug both inside a top-level entity, called microprocessor, where the control and status signals connections are made.
+
+The **complete circuit** design of the processor is like this one:
+
  ![](images/CompleteCircuit.png)
+
+The VHDL files contain the entity we're emulating and it architecture. The files attached are the following:
+
++reg.vhdl : generic bit width register. Behavioral architecture.
++mux2_1.vhdl : generic bit width 2_1 multiplexor. Behavioral architecture.
++mux4_1.vhdl : generic bit width 4_1 multiplexor. Behavioral architecture.
++add_sub.vhdl : generic bit width adder/substractor. Behavioral architecture.
++incrementer.vhd : generic bit width incrementer. Behavioral architecture.
++memory.vhdl : 32x8b memory with synchronous read/write operations. Behavioral architecture.
++datapath.vhdl : Implementation of Datapath design. Composed of all the components previosly specified. RTL architecture.
++controller.vhdl : Implementation of Controller design. Based on two main processes, next_state_logic, and output_logic. Behavioral architecture
++ microprocessor.vhdl : Implementation of the complete circuit design. Has two main components, the CU and the Datapath. RTL architecture.
+
+and for testing, we have two VHDL files, which are:
+
++ microprocessor_tb.vhdl : Contains the testbench entity and body test.
++ microprocessor_tb_conf.vhdl : Contains the testbench configuration.
  
  ## Execution and testbench
  
