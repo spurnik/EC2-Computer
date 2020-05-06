@@ -139,8 +139,8 @@ The **complete circuit** design of the processor is like this one:
 
 The VHDL attached files contain the entity we're emulating and it architecture. These are:
 
-1. reg.vhdl : Generic bit width register. Behavioral architecture.
-2. mux2_1.vhdl : Generic bit width 2_1 multiplexor. Behavioral architecture.
+1. [](reg.vhdl) : Generic bit width register. Behavioral architecture.
+2. [](mux2_1.vhdl) : Generic bit width 2_1 multiplexor. Behavioral architecture.
 3. mux4_1.vhdl : Generic bit width 4_1 multiplexor. Behavioral architecture.
 4. add_sub.vhdl : Generic bit width adder/substractor. Behavioral architecture.
 5. incrementer.vhd : Generic bit width incrementer. Behavioral architecture.
@@ -162,9 +162,11 @@ These input signals include an **8b data input** signal, **clock** signal, **res
 
 The output signals include the **halt** signal, asserted once the HALT state is reached, and an **8b data output**. This last signal will be always available, as no tri-state buffer is used.
 
-The VHDL files can be compiled in the order given above. To run the test, I used to type: ```ghdl -r --workdir=work test_conf --vcd=waves.vcd``` and then halt it with **cntr+C**. This will generate a vcd file that can be visuallized with some waveform application.
+The VHDL files can be compiled in the order given above. To run the test, I used to type: 
+```ghdl -r --workdir=work test_conf --vcd=waves.vcd``` and then halt it with **cntr+C**. 
+This will generate a vcd file that can be visuallized with some waveform application.
 
-Finally, I've included some programs in programs.vhdl file. 
+Finally, I've included some programs in the programs.vhdl file. By default, the memory is initiallized with INPUT_PRODUCT program, which performs the product of test input signal values. 
 
 
 
