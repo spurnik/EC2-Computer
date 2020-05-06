@@ -156,7 +156,7 @@ and two VHDL files for testing, which are:
  
  ## Execution and testbench
  
-For the processor to run a program, it has to be charged directly on memory initiallization, in the memory.vhdl file. Then, running the testbench will generate the input/output signals of the processor, called _CPU_. 
+For the processor to run a program, it has to be charged directly on memory initiallization, in the [memory.vhdl](memory.vhdl) file. Then, running the testbench will generate the input/output signals of the processor, called _CPU_. 
 
 These input signals include an **8b data input** signal, **clock** signal, **reset** signal, and **Enter** signal. The reset (active high) signal clears all Datapath's resgisters, and changes the CU state to START state, asynchronously. When the signal goes down, the processor will start the execution beggining with the 00h memory instruction, and passing throught different states until HALT is reached. The Enter signal it's just used for entering data input, whenever we reach the IN state. If not asserted, the execution will stop at this state, waiting for input to be read.
 
@@ -164,7 +164,7 @@ The output signals include the **halt** signal, asserted once the HALT state is 
 
 The VHDL files can be compiled in the order given above. To run the test, I used to type: ```ghdl -r --workdir=work test_conf --vcd=waves.vcd``` and then halt it with **cntr+C**. This will generate a vcd file that can be visuallized with some waveform application.
 
-Finally, I've included some programs in the [programs.vhdl](programs.vhdl) file. By default, the memory is initiallized with INPUT_PRODUCT program, which performs the product of test input signal values. 
+Finally, I've included some programs in the [programs.vhdl](programs.vhdl) file. By default, the memory is initiallized with INPUT_PRODUCT program, which performs the product of input signal values. 
 
 
 
