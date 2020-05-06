@@ -10,7 +10,7 @@ configuration test_conf of microprocessor_tb is
 
   for test
 
-    for CPU : microprocessor use entity work.microprocessor(rtl);
+    for EC2 : microprocessor use entity work.microprocessor(rtl);
       for rtl
 
         for the_process_unit : datapath use entity work.datapath(rtl);
