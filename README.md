@@ -139,8 +139,8 @@ The **complete circuit** design of the processor is like this one:
 
 The VHDL attached files contain the entity we're emulating and it architecture. These are:
 
-1. ![](reg.vhdl) : Generic bit width register. Behavioral architecture.
-2. ![](mux2_1.vhdl) : Generic bit width 2_1 multiplexor. Behavioral architecture.
+1. [](/reg.vhdl) : Generic bit width register. Behavioral architecture.
+2. [](/mux2_1.vhdl) : Generic bit width 2_1 multiplexor. Behavioral architecture.
 3. mux4_1.vhdl : Generic bit width 4_1 multiplexor. Behavioral architecture.
 4. add_sub.vhdl : Generic bit width adder/substractor. Behavioral architecture.
 5. incrementer.vhd : Generic bit width incrementer. Behavioral architecture.
