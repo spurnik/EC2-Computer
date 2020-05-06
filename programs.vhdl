@@ -1,6 +1,6 @@
 
 --------------------------------------------------------------------------------
--- VHDL PROGRAMS: 4 instruction programs. Includes all 32 bit words of memory.
+-- VHDL PROGRAMS: 4 programs. Includes all 32 bit words of memory.
 --------------------------------------------------------------------------------
 
 -- GCD : Program to calculate the GCD of two unsigned 8b numbers.
