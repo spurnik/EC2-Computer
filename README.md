@@ -156,3 +156,6 @@ and two VHDL files for testing, which are:
  
  ## Execution and testbench
  
+For the processor to run a **program**, it has to be charged directly on memory initiallization, in the memory.vhdl file. Then, running the testbench will generate the input/output signals of the processor, called _CPU_. 
+
+These input signals include an **8b data input** signal, **clock** signal, **reset** signal, and **Enter** signal. The reset (active high) signal clears all Datapath's resgisters, and changes the CU state to START state, asynchronously. When the signal goes down, the program...
