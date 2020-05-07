@@ -2,7 +2,7 @@
 
 Implementation of "Enoch" Computer version 2, designed by Enoch O. Hwang, in his book _Digital Logic and Microprocessor Design with VHDL_, 2005.
 
-The computer follows the Von Neumann approach, based on an 8b microprocessor with internal data+instruction RAM memory, including input/output ports.
+The computer follows the Von Neumann approach, as an 8b microprocessor with internal data+instruction RAM memory, including input/output ports.
 
 ## Instruction set
 
@@ -39,18 +39,18 @@ The datapath or process unit is designed based on the instruction set, because i
 8. **MEMmux** (5b) : 2-1 multiplexor to select the next memory address.
 9. **Amux** (8b) : 4-1 multiplexor to select the next accumulator content.
 
-The datapath has to perform the following **operations**, classified on their purpose:
+The datapath's **operations** are classified on their purpose:
 
 _Instruction cycle_: 
- + Loads the instruction from memory to IR. Increments PC's content by one and load it back to PC. 
+ + Loads the instruction from memory to IR. Increments PC content by one and load it back to PC. 
  + Distinguish between memory fecthing address (to fecth the next instruction) and memory operand address (to point some memory data).
 
 _Memory cycle_: 
  + Reads the memory data/instruction specified by memory address and loads it to A/IR.
- + Writes A's content to the memory location specified by memory address.
+ + Writes A content to the memory location specified by memory address.
  
 _Execution cycle_:
- + Adds or substracts to A's content the memory output data, and loads the result back to A.
+ + Adds or substracts to A content the memory output data, and loads the result back to A.
  + Loads the external data input to A.
  + Loads the operand address specified by jump instruction on PC.
  
@@ -77,9 +77,9 @@ So here's the Datapath design, which best describes the conections between it's 
 
  ## Control Unit
  
-We have already all the necessary control signals to control datapath's operations. The control unit is a **FSM (Finite State Machine)**, whose output are the control signals, grouped as a 'control word'. Each possible control word is performed in one clock cycle. 
+We have defined all the signals to control datapath's operations. The control unit is a **FSM (Finite State Machine)**, whose output are these control signals, grouped as a 'control word'. Each possible control word is performed in one clock cycle. 
 
-First, we have to define the **FSM states** to perform all the operations of the datapath:
+Definition of **FSM states**, to perform all the operations of the datapath:
 
 1. **START** (0000) : The 'no operation' state. Acts as a stall, in order to load all the previous result values. Also reads from memory the next instruction pointed by PC.
 
@@ -131,7 +131,7 @@ For example, when reaching START state, the control unit will be outputting zero
 
  ## Implementation
  
-Because of the VHDL **behavioral** style, it's not necessary to build the structural design of CU, unlike Datapath's design. Then, the processor VHDL code follows a FSM+D model. That means we build the Datapath and the CU on separated entites, and then we plug both inside a top-level entity, called microprocessor, where the control and status signals connections are made.
+Because of the VHDL **behavioral** style, is not necessary to build the structural design of CU, unlike Datapath's design. Then, the processor VHDL code follows a FSM+D model. That means we build the Datapath and the CU on separated entites, and then we plug both inside a top-level entity, called microprocessor, where the control and status signals connections are made.
 
 The **complete circuit** design of the processor is like this one:
 
@@ -156,12 +156,12 @@ and two VHDL files for testing, which are:
  
  ## Execution and testbench
  
-For the processor to run a program, has to be charged directly on memory initiallization, in the [memory.vhdl](memory.vhdl) file. Then, running the testbench will generate the input/output signals of the processor, called _EC2_. 
+For the processor to run a program, it has to be charged directly on memory initiallization, in the [memory.vhdl](memory.vhdl) file. Then, running the testbench will generate the input/output signals of the processor, called _EC2_. 
 
-These input signals include an **8b data input** signal, **clock** signal, **reset** signal, and **Enter** signal. The reset (active high) signal clears all Datapath's resgisters, and changes the CU state to START state, asynchronously. When the signal goes down, the processor will start the execution beggining with the 00h memory instruction, and passing throught different states until HALT is reached. The Enter signal it's just used for entering data input, whenever we reach the IN state. If not asserted, the execution will stop at this state, waiting for input to be read.
+These input signals include an **8b data input** signal, **clock** signal, **reset** signal, and **Enter** signal. The reset (active high) signal clears all Datapath's registers, and changes the CU state to START state, asynchronously. When the signal goes down, the processor will start the execution beginning with the 00h memory instruction, and passing through different states until HALT is reached. The Enter signal is used for entering data input, whenever we reach the IN state. If not asserted, the execution will stop at this state, waiting for input to be read.
 
 The output signals include the **halt** signal, asserted once the HALT state is reached, and an **8b data output**. This last signal will be always available, as no tri-state buffer is used.
 
-The VHDL files can be compiled in the order given above. To run the test, I used to type: ```ghdl -r --workdir=work test_conf --vcd=waves.vcd``` and then halt it with **cntr+C**. This will generate a vcd file that can be visuallized with some waveform application.
+The VHDL files can be compiled in the order given above. To run the test, I used to type: ```ghdl -r --workdir=work test_conf --vcd=waves.vcd``` and then halt it with **cntr+C**. This will generate a vcd file that can be visualized with some waveform application.
 
-Finally, I've included some programs in the [programs.vhdl](programs.vhdl) file. By default, the memory is initiallized with INPUT_PRODUCT program, which performs the product of input signal values. 
+Finally, I've included four instruction programs in the [programs.vhdl](programs.vhdl) file. By default, the memory is initialized with INPUT_PRODUCT program, which performs the product of input signal values. 
