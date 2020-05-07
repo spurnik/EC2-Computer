@@ -41,15 +41,15 @@ The datapath or process unit is designed based on the instruction set, because i
 
 The datapath has to perform the following **operations**, classified on their purpose:
 
-1. _Instruction cycle_: 
+_Instruction cycle_: 
  + Loads the instruction from memory to IR. Increments PC's content by one and load it back to PC. 
  + Distinguish between memory fecthing address (to fecth the next instruction) and memory operand address (to point some memory data).
 
-2. _Memory cycle_: 
+_Memory cycle_: 
  + Reads the memory data/instruction specified by memory address and loads it to A/IR.
  + Writes A's content to the memory location specified by memory address.
  
-3. _Execution cycle_:
+_Execution cycle_:
  + Adds or substracts to A's content the memory output data, and loads the result back to A.
  + Loads the external data input to A.
  + Loads the operand address specified by jump instruction on PC.
@@ -77,7 +77,7 @@ So here's the Datapath design, which best describes the conections between it's 
 
  ## Control Unit
  
-We have already all the necessary control signals to control datapath's operations. The control unit is just a **FSM (Finite State Machine)**, whose output are the control signals values, grouped as a 'control word'. Each possible control word is performed at one clock cycle. 
+We have already all the necessary control signals to control datapath's operations. The control unit is a **FSM (Finite State Machine)**, whose output are the control signals, grouped as a 'control word'. Each possible control word is performed in one clock cycle. 
 
 First, we have to define the **FSM states** to perform all the operations of the datapath:
 
